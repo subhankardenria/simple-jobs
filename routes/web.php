@@ -7,10 +7,20 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'home');
 
+Route::get('/test', function () {
+    // dispatch(function () {
+    //     logger('Hello from queue!');
+    // })->delay(5);
+
+    $job = \App\Models\Job::find(1);
+    \App\Jobs\TranslateJob::dispatch($job);
+    return 'Test';
+});
+
 // Route::resource('jobs', JobController::class)->middleware('auth');
 // Job resource routes
 Route::get('/jobs', [JobController::class, 'index'])->name('jobs.index');
-Route::get('/jobs/create', [JobController::class, 'create'])->name('jobs.create');
+Route::get('/jobs/create', [JobController::class, 'create'])->middleware('auth')->name('jobs.create');
 Route::post('/jobs', [JobController::class, 'store'])->middleware('auth')->name('jobs.store');
 Route::get('/jobs/{job}', [JobController::class, 'show'])->name('jobs.show');
 

@@ -9,7 +9,9 @@
                             src="https://img.icons8.com/?size=100&id=S4PrpPPYz9yh&format=png&color=000000" alt="">
                         <div class="min-w-0 flex-auto">
                             <p class="text-sm/6 font-bold text-blue-500">{{ $job->employer->name }}</p>
-                            <a href="/jobs/{{ $job['id'] }}"><p class="text-sm/5 font-semibold text-gray-900">{{ $job['title'] }}</p></a>
+                            <a href="/jobs/{{ $job['id'] }}">
+                                <p class="text-sm/5 font-semibold title">{{ $job['title'] }}</p>
+                            </a>
                             {{-- <p class="mt-1 truncate text-xs/5 text-gray-500">
                                 @foreach (json_decode($job['locations']) as $location)
                                     {{ $location }}{{ !$loop->last ? ', ' : '' }}
